@@ -1,0 +1,49 @@
+﻿@using TestAssignment.Models
+@model IEnumerable<Product>
+@{
+    ViewBag.Title = "Index";
+    int i = 1;
+}
+
+<input type="button" class="btn btn-primary" value="add" onclick="window.location.href='/Admin/CreateProduct/'" />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Product name</th>
+            <th>Quantiy</th>
+            <th>Price</th>
+            <th>Total price with VAT</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@i</td>
+                <td>
+                    @item.ItemName
+                </td>
+                <td>
+                    @item.Quantiy
+                </td>
+                <td>
+                    @item.Price
+                </td>
+                <td>
+                    @((item.Quantiy * item.Price) * (1 + ViewBag.VAT))
+                </td>
+                <td>
+                    <button class="btn btn-warning" onclick="window.location.href = '/Admin/EditProduct/@item.Id'">Edit</button>
+                    <button class="btn btn-danger" onclick="window.location.href = '/Admin/DeleteProduct/@item.Id'">Delete</button>
+                </td>
+            </tr>
+            i++;
+        }
+    </tbody>
+
+</table>
+

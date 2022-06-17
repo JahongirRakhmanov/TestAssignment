@@ -1,0 +1,41 @@
+﻿@using TestAssignment.Models
+@model IEnumerable<Product>
+@{
+    ViewBag.Title = "Index";
+    int i = 1;
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Product name</th>
+            <th>Quantiy</th>
+            <th>Price</th>
+            <th>Total price with VAT</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@i</td>
+                <td>
+                    @item.ItemName
+                </td>
+                <td>
+                    @item.Quantiy
+                </td>
+                <td>
+                    @item.Price
+                </td>
+                <td>
+                    @((item.Quantiy * item.Price) * (1 + ViewBag.VAT))
+                </td>
+            </tr>
+            i++;
+        }
+    </tbody>
+
+</table>
+
