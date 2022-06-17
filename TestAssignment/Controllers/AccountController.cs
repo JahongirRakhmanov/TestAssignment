@@ -33,7 +33,7 @@ namespace TestAssignment.Controllers
                                         DateTime.Now,                   // created
                                         DateTime.Now.AddMinutes(20),    // expires
                                         false,                          // persistent?
-                                        user.Role.RoleName              // can be used to store roles TODO:change it later to bring from user role
+                                        user.Role.RoleName              // 
                                      );
 
                 string encryptedTicket = FormsAuthentication.Encrypt(authTicket);
@@ -54,6 +54,41 @@ namespace TestAssignment.Controllers
             ModelState.AddModelError("", "invalid username or password!");
             return View();
         }
+
+
+        public ActionResult SignUp()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult SignUp(User user, string Password2)
+        {
+            if (user.Password != Password2)
+            {
+                ModelState.AddModelError("", "Passwords do not match!");
+                return View();
+            }
+            var data = db.Users.FirstOrDefault(x => x.UserName == user.UserName);
+            if (data != null)
+            {
+                ModelState.AddModelError("", "This Username is already taken!");
+                return View();
+            }
+            var data2 = db.Users.FirstOrDefault(x => x.Email == user.Email);
+            if (data2 != null)
+            {
+                ModelState.AddModelError("", "This Email is already taken!");
+                return View();
+            }
+
+            user.RoleId = 2;
+            db.Users.Add(user);
+            db.SaveChanges();
+
+            return RedirectToAction("Index", "User");
+        }
+
 
         public ActionResult Logout()
         {

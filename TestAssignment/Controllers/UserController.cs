@@ -8,7 +8,6 @@ using TestAssignment.Models;
 
 namespace TestAssignment.Controllers
 {
-    [Authorize]
     public class UserController : Controller
     {
         ProductContext db = new ProductContext();

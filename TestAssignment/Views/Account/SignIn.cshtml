@@ -11,7 +11,10 @@
         <br />
         <input type="password" name="Password" class="form-control" required />
         <br />
-        <input type="submit" class="btn btn-primary"/>
+        <button type="submit" class="btn btn-primary">SignIn</button>
+        
         @Html.ValidationSummary(true, null, new { @style = "color:red" })
     </div>
 </form>
+<br /><br />
+<button type="button" class="btn btn-primary" onclick="window.location.href='/Account/SignUp/'">Sign up</button>

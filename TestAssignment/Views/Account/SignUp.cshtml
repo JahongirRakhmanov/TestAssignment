@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "SignUp";
+}
+
+<h2>SignUp</h2>
+
+<form method="post">
+    <div>
+        <input type="text" name="Username" class="form-control" placeholder="Username" required />
+        <br />
+        <input type="password" name="Password" class="form-control" placeholder="Password" required />
+        <br />
+        <input type="password" name="Password2" class="form-control" placeholder="Password" required />
+        <br />
+        <input type="text" name="FullName" class="form-control" placeholder="FullName" required />
+        <br />
+        <input type="email" name="Email" class="form-control" placeholder="Email" required />
+        <br />
+
+        <button type="submit" class="btn btn-primary">Create</button>
+        <button type="button" class="btn btn-default" onclick="window.location.href='/Account/SignIn'">Back</button>
+
+        @Html.ValidationSummary(true, null, new { @style = "color:red" })
+    </div>
+</form>
