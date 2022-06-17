@@ -94,9 +94,9 @@ namespace TestAssignment.Controllers
         }
 
 
-        public ActionResult ProductAudit(DateTime from, DateTime to)
+        public ActionResult ProductAudit()
         {
-            var data = db.ProductAudits.Where(x => x.UpdateDate >= from && x.UpdateDate <= to).ToList();
+            var data = db.ProductAudits;
             return View(data);
         }
 
